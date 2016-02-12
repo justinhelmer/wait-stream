@@ -1,0 +1,42 @@
+{
+  "name": "wait-stream",
+  "version": "1.0.0",
+  "description": "Simple wait module for through and through2 node streams",
+  "repository": "justinhelmer/wait-stream",
+  "keywords": [
+    "node",
+    "stream",
+    "gulp",
+    "wait",
+    "through",
+    "through2",
+    "setTimeout"
+  ],
+  "author": "Justin Helmer <jhelmer25@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/justinhelmer/wait-stream/issues"
+  },
+  "homepage": "https://github.com/justinhelmer/wait-stream#readme",
+  "main": "index.js",
+  "scripts": {
+    "coverage": "istanbul cover _mocha --report lcovonly -- --colors -R dot && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
+    "test": "eslint test index.js && mocha --colors"
+  },
+  "dependencies": {
+    "map-stream": "0.0.6"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "coveralls": "^2.11.6",
+    "eslint": "^1.10.3",
+    "eslint-config-google": "^0.3.0",
+    "eslint-plugin-mocha": "^1.1.0",
+    "istanbul": "^0.4.2",
+    "lodash": "^4.3.0",
+    "mocha": "^2.4.5",
+    "require-subvert": "^0.1.0",
+    "sinon": "^1.17.3",
+    "sinon-chai": "^2.8.0"
+  }
+}
