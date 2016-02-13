@@ -3,31 +3,40 @@
 
   var chai = require('chai');
   var sinon = require('sinon');
-  var sinonChai = require('sinon-chai');
+  var through2 = require('through2');
   var expect = chai.expect;
-  var requireSubvert = require('require-subvert')(__dirname);
+  var wait = require('../');
 
-  chai.use(sinonChai);
+  chai.use(require('dirty-chai'));
+  chai.use(require('sinon-chai'));
 
   var sandbox = sinon.sandbox.create();
 
   describe('wait-stream (exported module)', function() {
     var callback;
-    var file;
-    var map;
+    var chunk;
+    var stream;
     var timeout;
 
     beforeEach(function() {
-      file = 'FILE';
       callback = sandbox.spy();
+      chunk = 'CHUNK';
+      stream = [];
       timeout = sandbox.spy(global, 'setTimeout');
 
-      map = function(cb) {
-        cb(file, callback);
-      };
+      sandbox.stub(through2, 'obj', through2Obj);
 
-      requireSubvert.subvert('map-stream', map);
-      requireSubvert.require('../index')(1000);
+      /**
+       * Mock through2.obj specifically for its usages within wait-stream.
+       *
+       * @name through2Obj
+       * @param {function} cb - The callback registered to through2.obj by wait-stream.
+       */
+      function through2Obj(cb) {
+        cb.call(stream, chunk, 'encoding', callback);
+      }
+
+      wait(1000);
     });
 
     afterEach(function() {
@@ -38,9 +47,18 @@
       expect(timeout).to.have.been.calledWithExactly(sinon.match.typeOf('function'), 1000);
     });
 
-    it('should continue after waiting', function() {
-      timeout.args[0][0]();
-      expect(callback).to.have.been.calledWithExactly(null, file);
+    describe('after waiting for the specified duration', function() {
+      beforeEach(function() {
+        timeout.args[0][0]();
+      });
+
+      it('should push the chunk onto the stream', function() {
+        expect(stream).to.eql([chunk]);
+      });
+
+      it('should continue the stream', function() {
+        expect(callback).to.have.been.called();
+      });
     });
   });
 })();

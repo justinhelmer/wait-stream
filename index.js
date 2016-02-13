@@ -6,20 +6,22 @@
 (function() {
   'use strict';
 
-  var map = require('map-stream');
+  var through2 = require('through2');
 
   /**
-   * Through stream with a simple passthrough after a specified duration.
+   * Through2 stream with a simple passthrough after a specified duration.
    *
    * @name wait
    * @param {number} timeout - The duration to wait, in milliseconds.
-   * @param {boolean} [options.through2] - If set to `true`, will use through2 streams instead of through streams.
-   * @return {stream} - The through stream for piping.
+   * @return {stream} - The node stream for piping.
    */
   function wait(timeout) {
-    return map(function(file, cb) {
+    return through2.obj(function(chunk, enc, callback) {
+      var stream = this;
+
       setTimeout(function() {
-        cb(null, file);
+        stream.push(chunk);
+        callback();
       }, timeout || 0);
     });
   }

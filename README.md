@@ -1,5 +1,5 @@
 # wait-stream
-Simple wait module for through and through2 node streams.
+Simple wait module for streams3 in node.
 
 [![npm package](https://badge.fury.io/js/wait-stream.svg)](https://www.npmjs.com/package/wait-stream)
 [![node version](https://img.shields.io/node/v/wait-stream.svg?style=flat)](http://nodejs.org/download/)
@@ -11,13 +11,17 @@ Simple wait module for through and through2 node streams.
 
 Set a delay in a pipeline using [setTimeout](https://nodejs.org/api/timers.html#timers_settimeout_callback_delay_arg). Works well with [Gulp](http://gulpjs.com/).
 
+Uses [through2](https://github.com/rvagg/through2) as opposed to `node` core's [stream](https://nodejs.org/api/stream.html) module. See this excellent article by @rvagg for more:
+
+> [Why I don't use Node's core 'stream' module](https://r.va.gg/2014/06/why-i-dont-use-nodes-core-stream-module.html)
+
 ## Usage
 
-### wait(timeout[, options])
+### wait(timeout)
 
 #### timeout
 
-_{number}_ The delay in `ms` to pass to [setTimeout](https://nodejs.org/api/timers.html#timers_settimeout_callback_delay_arg).
+> _{number}_ The delay in `ms` to pass to [setTimeout](https://nodejs.org/api/timers.html#timers_settimeout_callback_delay_arg).
 
 ## Example
 
