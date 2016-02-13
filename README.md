@@ -17,11 +17,17 @@ Uses [through2](https://github.com/rvagg/through2) as opposed to `node` core's [
 
 ## Usage
 
-### wait(timeout)
+### wait(timeout[, options])
 
 #### timeout
 
 > _{number}_ The delay in `ms` to pass to [setTimeout](https://nodejs.org/api/timers.html#timers_settimeout_callback_delay_arg).
+
+### options
+
+#### once
+
+> _{boolean}_ The delay will only happen for the first chunk to enter the stream; all other chunks will pass through immediately.
 
 ## Example
 
