@@ -4,6 +4,7 @@ Simple wait module for through and through2 node streams.
 [![npm package](https://badge.fury.io/js/wait-stream.svg)](https://www.npmjs.com/package/wait-stream)
 [![node version](https://img.shields.io/node/v/wait-stream.svg?style=flat)](http://nodejs.org/download/)
 [![build status](https://travis-ci.org/justinhelmer/wait-stream.svg?branch=master)](https://travis-ci.org/justinhelmer/wait-stream)
+[![coverage status](https://coveralls.io/repos/github/justinhelmer/wait-stream/badge.svg?branch=master)](https://coveralls.io/github/justinhelmer/wait-stream?branch=master)
 [![dependency status](https://david-dm.org/justinhelmer/wait-stream.svg)](https://github.com/justinhelmer/wait-stream)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/justinhelmer/wait-stream/issues)
 [![devDependency status](https://david-dm.org/justinhelmer/wait-stream/dev-status.svg)](https://github.com/justinhelmer/wait-stream)
