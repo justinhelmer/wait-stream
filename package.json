@@ -1,6 +1,6 @@
 {
   "name": "wait-stream",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Simple wait module for through and through2 node streams",
   "repository": "justinhelmer/wait-stream",
   "keywords": [
